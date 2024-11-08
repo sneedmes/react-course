@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Components/Header/Header"
+import {ways} from './data.js'
+import WayToTeach from "./Components/WayToTeach/WayToTeach";
+import Button from "./Components/Button/Button"
+import { useState } from "react"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [content, setContent] = useState('Please click the button')
+
+  function handleClick(info: string){
+    setContent(info)
+  }
+    return (
+    <div>
+      <Header />
+      <main>
+        <section>
+          <h3>Подход к обучению</h3>
+          <ul>
+            <WayToTeach
+             title={ways[0].title}
+             description={ways[0].description}
+             />
+             <WayToTeach
+             {...ways[1]}
+             />
+             <WayToTeach
+             {...ways[2]}
+             />
+             <WayToTeach
+             {...ways[3]}
+             />
+          </ul>
+        </section>
+        <section>
+          <Button handleClick={() => handleClick('way')} text="Hydrogen"/>
+          <Button handleClick={() => handleClick('program')} text="Diet"/>
+          <Button handleClick={() => handleClick('easy')} text="Sport"/>
+        </section>
+        <p>{content}</p>
+      </main>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
