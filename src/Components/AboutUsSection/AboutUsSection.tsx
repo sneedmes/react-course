@@ -12,7 +12,16 @@ export default function AboutUsSection(){
             <h2>Contacts</h2>
             <form>
                 <label htmlFor="name">Enter your name</label>
-                <input type="text" id='name' className="control" value={name} onChange={(name)=>setName(name.target.value)}/>
+                <input
+                    type="text"
+                    id='name'
+                    className="control"
+                    value={name}
+                    onChange={(name)=>setName(name.target.value)}
+                    style={{
+                        border: name.trim().length ? undefined : '1px solid blue'
+                    }}
+                />
 
                 <label htmlFor="reason">Reason of contact</label>
                 <select id="reason" className='control' value={value} onChange={(event)=>setValue(event.target.value)}>
@@ -20,10 +29,6 @@ export default function AboutUsSection(){
                     <option value="help">Help</option>
                     <option value="idea">Idea</option>
                 </select>
-                <pre>
-                    name: {name}
-                    value: {value}
-                </pre>
                 <Button text='Send' isActive={false} handleClick={()=>null}/>
             </form>
         </section>
