@@ -22,6 +22,7 @@ export const ways = [
   ]
   
   export const differences = {
+    null: 'Click the button',
     way: 'Узконаправленный подход.',
     easy: 'Доступность обучения. ',
     program: 'Концентрация знаний.',

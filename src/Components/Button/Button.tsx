@@ -1,11 +1,11 @@
-import { info } from 'console'
-import './Button.css'
+import classes from './Button.module.css'
 
 type ButtonProps = {
     text: string
-    handleClick: (info: string)=>void
+    handleClick: ()=>void
+    isActive: boolean
 }
 
-export default function Button ({text, handleClick}: ButtonProps){
-    return <button className='button' onClick={()=>handleClick(text)}>{text}</button>
+export default function Button ({text, handleClick, isActive}: ButtonProps){
+    return <button className={isActive ? `${classes.button} ${classes.active}` : classes.button} onClick={handleClick}>{text}</button>
 }
