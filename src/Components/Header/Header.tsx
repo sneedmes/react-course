@@ -1,5 +1,5 @@
 import classes from './Header.module.css'
-import logo from '../../Images/logo-name.svg'
+// import logo from '../../Images/logo-name.svg'
 import {useState} from "react";
 import { styled } from 'styled-components'
 
@@ -16,8 +16,7 @@ export default function Header(){
 
     return (
         <div className={classes.header}>
-            <img src={logo} alt="" />
-            <h1>SneedmeS</h1>
+            <h1>Arcane</h1>
             <p>Time: {time.toLocaleTimeString()}</p>
         </div>
     )

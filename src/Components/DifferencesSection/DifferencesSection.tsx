@@ -9,9 +9,8 @@ export default function DifferencesSection() {
     }
     return (
         <section>
-            <Button isActive={content === 'way'} handleClick={() => handleClickForInfo('way')} text="Hydrogen"/>
-            <Button isActive={content === 'program'} handleClick={() => handleClickForInfo('program')} text="Diet"/>
-            <Button isActive={content === 'easy'} handleClick={() => handleClickForInfo('easy')} text="Sport"/>
+            <Button disabled={false} isActive={content === 'way'} handleClick={() => handleClickForInfo('way')} text="ZAUN"/>
+            <Button disabled={false} isActive={content === 'easy'} handleClick={() => handleClickForInfo('easy')} text="PILTOVER"/>
             <p>{differences[content]}</p>
         </section>
     )

@@ -4,8 +4,9 @@ type ButtonProps = {
     text: string
     handleClick: ()=>void
     isActive: boolean
+    disabled: boolean
 }
 
-export default function Button ({text, handleClick, isActive}: ButtonProps){
+export default function Button ({text, handleClick, isActive, disabled}: ButtonProps){
     return <button className={isActive ? `${classes.button} ${classes.active}` : classes.button} onClick={handleClick}>{text}</button>
 }

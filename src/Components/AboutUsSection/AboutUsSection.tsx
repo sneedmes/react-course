@@ -1,10 +1,43 @@
 import Button from "../Button/Button";
-import {useState} from "react";
+import {useState, useRef} from "react";
 import '../Button/Button.module.css'
+import './AboutUsSection.css'
+
+function StateRef(){
+    const [value, setValue] = useState('')
+    const [show, setShow] = useState(false)
+
+    function handleKeyDown(event: any){
+        if(event.key==='Enter'){
+            setShow(true)
+        }
+    }
+    return (
+        <div>
+            <h3 style={{marginLeft: '0px'}}>Input value: {show && value}</h3>
+            <input type="text"
+                   className='select'
+                   value={value}
+                   onKeyDown={handleKeyDown}
+                   onChange={(event)=>setValue(event.target.value)}/>
+        </div>
+    )
+}
 
 export default function AboutUsSection(){
-    const [name, setName] = useState('')
-    const [value, setValue] = useState('')
+    const [form, setForm] = useState({
+        name: "",
+        hasError: true,
+        reason: 'error'
+    })
+
+    function handleClickForName(title: any){
+        setForm((prev)=>({
+            ...prev,
+            name: title.target.value,
+            hasError: title.target.value.trim().length===0
+        }))
+    }
 
     return (
         <section>
@@ -16,21 +49,25 @@ export default function AboutUsSection(){
                     type="text"
                     id='name'
                     className="control"
-                    value={name}
-                    onChange={(name)=>setName(name.target.value)}
+                    value={form.name}
+                    onChange={handleClickForName}
                     style={{
-                        border: name.trim().length ? undefined : '1px solid blue'
+                        border: form.hasError ? '1px solid red' : undefined
                     }}
                 />
 
                 <label htmlFor="reason">Reason of contact</label>
-                <select id="reason" className='control' value={value} onChange={(event)=>setValue(event.target.value)}>
+                <select id="reason"
+                        className='select'
+                        value={form.reason}
+                        onChange={(event)=>setForm((prev)=>({...prev, reason: event.target.value}))}>
                     <option value="error">Error</option>
                     <option value="help">Help</option>
                     <option value="idea">Idea</option>
                 </select>
-                <Button text='Send' isActive={false} handleClick={()=>null}/>
+                <Button disabled={form.hasError} text='Send' isActive={!form.hasError} handleClick={()=>null}/>
             </form>
+            <StateRef/>
         </section>
     );
 }

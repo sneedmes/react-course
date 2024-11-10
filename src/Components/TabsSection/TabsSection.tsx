@@ -9,8 +9,8 @@ type AboutUsProps = {
 export default function TabsSection({active, onChange}: AboutUsProps){
     return (
         <section>
-            <Button isActive={active === 'main'} text='Main' handleClick={()=>onChange('main')}/>
-            <Button isActive={active === 'aboutUs'} text='About us' handleClick={()=>onChange('aboutUs')}/>
+            <Button disabled={false} isActive={active === 'main'} text='Main' handleClick={()=>onChange('main')}/>
+            <Button disabled={false} isActive={active === 'aboutUs'} text='About us' handleClick={()=>onChange('aboutUs')}/>
         </section>
     )
 }

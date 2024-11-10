@@ -5,7 +5,7 @@ import React from "react";
 export default function TeachingSection() {
     return (
         <section>
-            <h3>Подход к обучению</h3>
+            <h3>Arcane's characters</h3>
             <ul>
                 {ways.map(way => <WayToTeach key={way.title} {...way}/>)}
             </ul>
