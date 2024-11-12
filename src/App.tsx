@@ -10,7 +10,6 @@ import EffectSection from "./Components/EffectSection/EffectSection";
 function App() {
     const [tab, setTab] = useState('effect')
     return (
-
         <>
             <div id='modal'></div>
             <Header/>
@@ -27,7 +26,11 @@ function App() {
                         <AboutUsSection/>
                     </>
                 )}
-                <EffectSection/>
+                {tab === 'effect' && (
+                    <>
+                        <EffectSection/>
+                    </>
+                )}
             </main>
         </>
     )

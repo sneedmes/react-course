@@ -8,6 +8,8 @@ type ModalProps={
 
 export default function Modal({children, open }:ModalProps){
     return (
-        <dialog open={open}>{children}</dialog>
+        <>
+            <dialog open={open}>{children}</dialog>
+        </>
     )
 }

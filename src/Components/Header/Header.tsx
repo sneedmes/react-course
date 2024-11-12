@@ -1,6 +1,6 @@
 import classes from './Header.module.css'
 // import logo from '../../Images/logo-name.svg'
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { styled } from 'styled-components'
 
 // const HeaderStyles = styled.header`
@@ -11,8 +11,12 @@ import { styled } from 'styled-components'
 
 export default function Header(){
     const [time, setTime] = useState(new Date)
-
-    setInterval(()=>setTime(new Date()), 1000)
+    useEffect(()=>{
+        const interval = setInterval(()=>setTime(new Date()), 1000)
+        return ()=>{
+            clearInterval(interval)
+        }
+    }, [])
 
     return (
         <div className={classes.header}>
