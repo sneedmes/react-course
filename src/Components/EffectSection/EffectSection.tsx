@@ -1,25 +1,26 @@
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
-import React, {useEffect, useState} from "react";
-
+import React, {useEffect, useState, useCallback} from "react";
+import useInput from "../../hooks/useInput";
+import "./EffectSection.css"
 export default function EffectSection(){
+    const input = useInput()
     const [modal, setModal] = useState(false)
     const [load, setLoad] = useState(false)
     const [users, setUsers] = useState([])
     function openModal(){
         setModal(true)
     }
-    async function loadingUsers(){
+    const loadingUsers = useCallback(async ()=>{
         setLoad(true)
         const response = await fetch('https://jsonplaceholder.typicode.com/users')
         const users = await response.json()
         setUsers(users)
-        setLoad(false)
-    }
+        setLoad(false)}, [])
 
-    useEffect(() => {
-        loadingUsers()
-    }, []);
+        useEffect(() => {
+            loadingUsers()
+        }, [loadingUsers]);
 
     return(
         <section>
@@ -33,13 +34,20 @@ export default function EffectSection(){
 
             {load && <p>loading...</p>}
             {!load && (
-                <ul>
-                    {users.map((user:any)=> (
-                        <li key={user.id}>
-                            {user.name}
-                        </li>
-                    ))}
-                </ul>
+                <section className='users'>
+                    <input type="text" className="control" {...input}/>
+                    <h5>{input.value}</h5>
+                    <ul>
+                        {users
+                            .filter((user:any)=>
+                                user.name.toLowerCase().includes(input.value.toLowerCase()))
+                                    .map((user:any)=> (
+                            <li key={user.id}>
+                                {user.name}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
             )}
         </section>
     )
